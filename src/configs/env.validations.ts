@@ -44,24 +44,28 @@ class EnvValidations {
 
   @IsString({ message: "Secreto token is required for deploy" })
   SEQUELIZE_DATABASE: string;
-  
+
   @IsString({ message: "Secreto token is required for deploy" })
   FILE_DEST: string;
 
 }
 
 export const validate = (config: Record<string, unknown>) => {
-  const validatedConfig = plainToClass(
-    EnvValidations,
-    config,
-    { enableImplicitConversion: true }
-  );
-  const errors = validateSync(validatedConfig, { skipMissingProperties: false });
+  console.log(config);
+  if (GetEnv("NODE_ENV") != "production") {
+    const validatedConfig = plainToClass(
+      EnvValidations,
+      config,
+      { enableImplicitConversion: true }
+    );
+    const errors = validateSync(validatedConfig, { skipMissingProperties: false });
+    if (errors.length > 0) {
+      console.log(errors);
+      // throw new Error(errors.toString());
+    }
+    return validatedConfig;
 
-  if (errors.length > 0) {
-    throw new Error(errors.toString());
   }
-  return validatedConfig;
 };
 
 export const GetEnv = (name: keyof EnvValidations): any => {
