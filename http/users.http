@@ -1,0 +1,38 @@
+GET {{url}}/users
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+GET {{url}}/users/1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
+POST {{url}}/users
+Accept: application/json
+Content-Type:application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "miguel",
+  "email": "cacahuate11@gmail.com",
+  "password": "admin12311"
+}
+
+###
+PATCH {{url}}/users/1
+Accept: application/json
+Content-Type:application/json
+
+{
+  "id": 1,
+  "name": "lololloplolo"
+}
+
+###
+
+DELETE {{url}}/users/2
+Accept: application/json
+
+###

@@ -1,0 +1,10 @@
+POST {{url}}/auth/sign-in
+Accept: application/json
+Content-Type:application/json
+
+{
+  "user": "cacahuatisimo13@gmail.com",
+  "password": "admin123"
+}
+
+###
