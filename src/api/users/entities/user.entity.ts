@@ -22,6 +22,7 @@ export class User extends GeneralModel<User> {
   @Column({ type: DataType.BOOLEAN, defaultValue: true })
   active?: boolean;
 
+
   @Is(async function Unique(email: string) {
     const user = await User.findOne({ where: { email: email.toLowerCase() } });
     if (user && user.id != this.id) {

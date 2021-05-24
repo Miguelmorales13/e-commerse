@@ -1,11 +1,10 @@
-import { PartialType } from "@nestjs/mapped-types";
 import { CreateCategoriesProductDto } from "./create-categories-product.dto";
 import { IsNumber } from "class-validator";
+import { Expose } from "class-transformer";
 
-export class UpdateCategoriesProductDto extends PartialType(CreateCategoriesProductDto) {
+export class UpdateCategoriesProductDto extends CreateCategoriesProductDto {
   @IsNumber({}, { message: "id is required for updatetion" })
-  id?: number;
+  @Expose() id?: number;
   createdAt: string;
   updatedAt: string;
-  deletedAt: string;
 }

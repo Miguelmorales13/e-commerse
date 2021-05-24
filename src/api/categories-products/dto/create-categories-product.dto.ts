@@ -1,11 +1,13 @@
-import { IsNumber, IsString } from "class-validator";
+import { IsString } from "class-validator";
+import { ApiExtraModels } from "@nestjs/swagger";
+import { Expose } from "class-transformer";
 
+@ApiExtraModels()
 export class CreateCategoriesProductDto {
   @IsString({ message: "name is required" })
-  name?: string;
+  @Expose() name?: string;
 
   nivel?: number;
 
-  @IsNumber({}, { message: "name is required" })
-  categoryId?: number;
+  @Expose() categoryId?: number;
 }

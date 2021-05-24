@@ -1,21 +1,24 @@
 import { IsEmail, IsString } from "class-validator";
+import { ApiExtraModels } from "@nestjs/swagger";
+import { Expose } from "class-transformer";
 
+@ApiExtraModels()
 export class CreateClientDto {
   @IsString({ message: "names is required for creation" })
-  name?: string;
+  @Expose() name?: string;
 
   @IsString({ message: "last name is required for creation" })
-  lastName?: string;
+  @Expose() lastName?: string;
 
   @IsString({ message: "second last name is required for creation" })
-  secondLastName?: string;
+  @Expose() secondLastName?: string;
 
-  active?: boolean;
+  @Expose() active?: boolean;
 
   @IsEmail({}, { message: "the email dont have correct format" })
   @IsString({ message: "email is required for creation" })
-  email?: string;
+  @Expose() email?: string;
 
   @IsString({ message: "password is required for creation" })
-  password?: string;
+  @Expose() password?: string;
 }

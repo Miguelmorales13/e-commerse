@@ -18,6 +18,9 @@ class EnvValidations {
   @IsEnum(EnvironmentTypes, { message: "node envs es not accepted" })
   NODE_ENV: string;
 
+  @IsString({ message: "the host is required" })
+  HOST: string;
+
   @IsNumber({}, { message: "the port is undefined, please check your environments" })
   PORT: number;
 
@@ -41,6 +44,9 @@ class EnvValidations {
 
   @IsString({ message: "Secreto token is required for deploy" })
   SEQUELIZE_DATABASE: string;
+  
+  @IsString({ message: "Secreto token is required for deploy" })
+  FILE_DEST: string;
 
 }
 

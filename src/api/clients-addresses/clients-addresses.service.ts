@@ -1,26 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { CreateClientsAddressDto } from './dto/create-clients-address.dto';
-import { UpdateClientsAddressDto } from './dto/update-clients-address.dto';
+import { Inject, Injectable } from "@nestjs/common";
+import { CreateClientsAddressDto } from "./dto/create-clients-address.dto";
+import { UpdateClientsAddressDto } from "./dto/update-clients-address.dto";
+import { SequelizeCrudService } from "../crud/sequelize-crud-service";
+import { ClientsAddress } from "./entities/clients-address.entity";
+import { getModelToken } from "@nestjs/sequelize";
 
 @Injectable()
-export class ClientsAddressesService {
-  create(createClientsAddressDto: CreateClientsAddressDto) {
-    return 'This action adds a new clientsAddress';
-  }
-
-  findAll() {
-    return `This action returns all clientsAddresses`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} clientsAddress`;
-  }
-
-  update(id: number, updateClientsAddressDto: UpdateClientsAddressDto) {
-    return `This action updates a #${id} clientsAddress`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} clientsAddress`;
+export class ClientsAddressesService extends SequelizeCrudService<ClientsAddress, CreateClientsAddressDto, UpdateClientsAddressDto> {
+  constructor(@Inject(getModelToken(ClientsAddress)) private readonly clientsAddressProvider: typeof ClientsAddress) {
+    super(clientsAddressProvider);
   }
 }

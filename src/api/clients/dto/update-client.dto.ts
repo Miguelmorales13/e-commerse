@@ -1,11 +1,12 @@
-import { PartialType } from "@nestjs/mapped-types";
 import { CreateClientDto } from "./create-client.dto";
 import { IsNumber } from "class-validator";
+import { Expose } from "class-transformer";
+import { OmitType, PartialType } from "@nestjs/mapped-types";
 
-export class UpdateClientDto extends PartialType(CreateClientDto) {
+export class UpdateClientDto extends PartialType(OmitType(CreateClientDto, ["password"])) {
   @IsNumber({}, { message: "id is required for updatetion" })
-  id?: number;
-  createdAt: string;
-  updatedAt: string;
-  deletedAt: string;
+  @Expose() id?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  deletedAt?: string;
 }

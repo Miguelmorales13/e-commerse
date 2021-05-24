@@ -1,9 +1,9 @@
-import { Product } from "./entities/product.entity";
+import { ImagesProduct } from "./entities/images-product.entity";
 import { getModelToken } from "@nestjs/sequelize";
 
-export const ProductProvider = [
+export const ImagesProductProvider = [
   {
-    provide: getModelToken(Product),
-    useValue: Product
+    provide: getModelToken(ImagesProduct),
+    useValue: ImagesProduct
   }
 ];

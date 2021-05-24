@@ -1,9 +1,9 @@
-import { Client } from "./entities/client.entity";
+import { ClientsAddress } from "./entities/clients-address.entity";
 import { getModelToken } from "@nestjs/sequelize";
 
-export const ClientProvider = [
+export const ClientsAddressProvider = [
   {
-    provide: getModelToken(Client),
-    useValue: Client
+    provide: getModelToken(ClientsAddress),
+    useValue: ClientsAddress
   }
 ];

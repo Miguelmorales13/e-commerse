@@ -1,16 +1,16 @@
 import { IsString } from "class-validator";
+import { ApiExtraModels } from "@nestjs/swagger";
 
+@ApiExtraModels()
 export class CreateClientsAddressDto {
-  @IsString({ message: "street and number is requred" })
+  @IsString({ message: "Street and number is requred" })
   streetAndNumber?: string;
-  @IsString({ message: "city is requred" })
+  @IsString({ message: "City is requred" })
   city?: string;
-  @IsString({ message: "zipcode is requred" })
+  @IsString({ message: "Zipcode is requred" })
   zipCode?: string;
-  @IsString({ message: "state is requred" })
+  @IsString({ message: "State is requred" })
   state?: string;
-  @IsString({ message: "latitude is requred" })
   lat?: string;
-  @IsString({ message: "longitud is requred" })
   lng?: string;
 }

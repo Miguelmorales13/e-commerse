@@ -32,6 +32,8 @@ export class Client extends GeneralModel<Client> {
   @Column({ type: DataType.STRING(60), allowNull: false })
   password?: string;
 
+  @Column({ type: DataType.BOOLEAN, defaultValue: true })
+  isVerified?: boolean;
 
   @BeforeCreate
   static async creation(instance: Client) {

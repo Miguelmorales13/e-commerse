@@ -17,11 +17,11 @@ export class CategoriesProduct extends GeneralModel<CategoriesProduct> {
       throw new Error("ups... you don have more nivels in this category");
     }
   })
-  @Column({ type: DataType.NUMBER({ length: 1 }), allowNull: false })
+  @Column({ type: DataType.INTEGER({ length: 1 }), allowNull: true })
   nivel?: number;
 
   @ForeignKey(() => CategoriesProduct)
-  @Column({ allowNull: false, type: DataType.INTEGER })
+  @Column({ allowNull: true, type: DataType.INTEGER })
   categoryId?: number;
 
   @BelongsTo(() => CategoriesProduct)
