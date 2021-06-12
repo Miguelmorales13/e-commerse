@@ -1,4 +1,4 @@
-import { BeforeCreate, BelongsTo, Column, DataType, ForeignKey, Is, Table } from "sequelize-typescript";
+import { BeforeCreate, BeforeUpdate, BelongsTo, Column, DataType, ForeignKey, Is, Table } from "sequelize-typescript";
 import { GeneralModel } from "../../General.model";
 
 @Table({
@@ -21,7 +21,7 @@ export class CategoriesProduct extends GeneralModel<CategoriesProduct> {
   nivel?: number;
 
   @ForeignKey(() => CategoriesProduct)
-  @Column({ allowNull: true, type: DataType.INTEGER })
+  @Column({ allowNull: true })
   categoryId?: number;
 
   @BelongsTo(() => CategoriesProduct)
@@ -30,6 +30,18 @@ export class CategoriesProduct extends GeneralModel<CategoriesProduct> {
 
   @BeforeCreate
   static async creation(instance: CategoriesProduct) {
+    console.error("subio de nivel", instance.categoryId);
+    if (instance.categoryId) {
+      const upCategory = await CategoriesProduct.findByPk(instance.categoryId);
+      instance.nivel = upCategory.nivel + 1;
+    } else {
+      instance.nivel = 1;
+    }
+  }
+
+  @BeforeUpdate
+  static async updating(instance: CategoriesProduct) {
+    console.error("subio de nivel", instance.categoryId);
     if (instance.categoryId) {
       const upCategory = await CategoriesProduct.findByPk(instance.categoryId);
       instance.nivel = upCategory.nivel + 1;

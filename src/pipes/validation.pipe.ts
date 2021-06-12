@@ -9,7 +9,6 @@ export class ValidationPipe implements PipeTransform {
       return value;
     }
     const object = plainToClass(metatype, value, { excludeExtraneousValues: true });
-    console.log(object, value);
     const errors = await validate(object);
     if (errors && errors.length > 0) {
       throw new HttpException(this.formatErrors(errors), HttpStatus.BAD_REQUEST);

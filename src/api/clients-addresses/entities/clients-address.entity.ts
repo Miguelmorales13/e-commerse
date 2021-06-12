@@ -23,7 +23,7 @@ export class ClientsAddress extends GeneralModel<ClientsAddress> {
   lng?: string;
 
   @ForeignKey(() => Client)
-  @Column({ allowNull: false, type: DataType.INTEGER })
+  @Column({ allowNull: false, type: DataType.BIGINT })
   clientId?: number;
 
   @BelongsTo(() => Client)

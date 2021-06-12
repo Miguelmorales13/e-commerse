@@ -33,7 +33,7 @@ export class ImagesProduct extends GeneralModel<ImagesProduct> {
   dimensions?: string;
 
   @ForeignKey(() => Product)
-  @Column({ allowNull: false, type: DataType.INTEGER })
+  @Column({ allowNull: false, type: DataType.BIGINT })
   productId?: number;
 
   @BelongsTo(() => Product)

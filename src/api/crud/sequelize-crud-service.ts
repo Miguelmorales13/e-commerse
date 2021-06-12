@@ -14,6 +14,7 @@ export class SequelizeCrudService<P extends GeneralModel<any>, C = any, U = any>
       return this.findOne(itemCreated.id);
 
     } catch (e) {
+      console.log(e);
       throw new SequelizeException(e.errors);
     }
   }

@@ -19,7 +19,8 @@ export class CategoriesProductsController {
   @ApiBadRequestResponse({ description: "the category product wasn't created because some field was not correct " })
   @ApiConflictResponse({ description: "the category product wasn't created because this usr already exist" })
   create(@Body() createCategoriesProductDto: CreateCategoriesProductDto) {
-    return this.categoriesProductsService.create(createCategoriesProductDto);
+    console.log(createCategoriesProductDto);
+    return this.categoriesProductsService.create({ ...createCategoriesProductDto, categoryId: createCategoriesProductDto.categoryId === 0 ? null : createCategoriesProductDto.categoryId });
   }
 
   @Get()
@@ -39,7 +40,7 @@ export class CategoriesProductsController {
   @ApiOkResponse({ description: "the category product was updated successful" })
   @ApiBadRequestResponse({ description: "the category product wasn't updated because some field was not correct " })
   update(@Param("id") id: string, @Body() updateCategoriesProductDto: UpdateCategoriesProductDto) {
-    return this.categoriesProductsService.update(+id, updateCategoriesProductDto);
+    return this.categoriesProductsService.update(+id, { ...updateCategoriesProductDto, categoryId: updateCategoriesProductDto.categoryId === 0 ? null : updateCategoriesProductDto.categoryId });
   }
 
   @Delete(":id")

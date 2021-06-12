@@ -1,4 +1,4 @@
-import { BelongsTo, Column, DataType, DefaultScope, ForeignKey, HasMany, Table } from "sequelize-typescript";
+import { BeforeUpdate, BelongsTo, Column, DataType, DefaultScope, ForeignKey, HasMany, Table } from "sequelize-typescript";
 import { GeneralModel } from "../../General.model";
 import { CategoriesProduct } from "../../categories-products/entities/categories-product.entity";
 import { GetEnv } from "../../../configs/env.validations";
@@ -32,12 +32,9 @@ export class Product extends GeneralModel<Product> {
   @Column({
     type: DataType.STRING(200),
     allowNull: false,
-    set(value: string) {
-      return value.replace(`${GetEnv("HOST")}uploads/${EnumUploads.images}/}`, "");
-    },
     get() {
-      if (this.getDataValue("file") === "") {
-        return this.getDataValue("file");
+      if (this.getDataValue("mainImage") === "") {
+        return this.getDataValue("mainImage");
       } else {
         return `${GetEnv("HOST")}uploads/${EnumUploads.images}/${this.getDataValue("mainImage")}`;
       }
@@ -67,9 +64,16 @@ export class Product extends GeneralModel<Product> {
   active?: boolean;
 
   @ForeignKey(() => CategoriesProduct)
-  @Column({ allowNull: false, type: DataType.INTEGER })
+  @Column({ allowNull: false, type: DataType.BIGINT })
   categoryId?: number;
 
   @BelongsTo(() => CategoriesProduct)
   category?: CategoriesProduct;
+
+  @BeforeUpdate
+  static onUpdate(instance: Product) {
+    if (instance.mainImage) {
+      return instance.mainImage.replace(`${GetEnv("HOST")}uploads/${EnumUploads.images}/}`, "");
+    }
+  }
 }

@@ -18,7 +18,8 @@ Authorization: Bearer {{token}}
   "name": "miguel",
   "lastName": "miguel",
   "secondLastName": "miguel",
-  "email": "cacahuatisimo13@gmail.com",
+  "active": true,
+  "email": "cacahuatisimo13+1@gmail.com",
   "password": "admin123"
 }
 
