@@ -4,7 +4,8 @@
 package-lock.json
 public/uploads/**
 public/uploads
-public/images
+public/uploads
+public/uploads/images
 #yarn.lock
 # Logs
 logs
