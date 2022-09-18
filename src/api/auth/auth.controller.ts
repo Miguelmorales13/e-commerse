@@ -10,9 +10,9 @@ export class AuthController {
   }
 
   @Post("sign-in")
-  @ApiOperation({ summary: "this endponit is for sign in" })
-  @ApiUnauthorizedResponse({ description: "if you don't have user or passwor or your credentials are wrong" })
-  @ApiCreatedResponse({ description: "successfull login" })
+  @ApiOperation({ summary: "this endpoint is for sign in" })
+  @ApiUnauthorizedResponse({ description: "if you don't have user or password or your credentials are wrong" })
+  @ApiCreatedResponse({ description: "successfully login" })
   async signIn(@Body() signIn: SignInDto) {
     const data = await this.authService.signIn(signIn);
     return {

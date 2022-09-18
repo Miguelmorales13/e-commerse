@@ -3,12 +3,13 @@ import { ClientsService } from "./clients.service";
 import { CreateClientDto } from "./dto/create-client.dto";
 import { UpdateClientDto } from "./dto/update-client.dto";
 import { ApiBadRequestResponse, ApiBearerAuth, ApiConflictResponse, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
-import { AuthGuard } from "@nestjs/passport";
+import {AuthGuard} from "@nestjs/passport";
+// import { AuthGuard } from "@nestjs/passport";
 
-@Controller("clients")
-@ApiTags("clients")
 @ApiBearerAuth()
 @UseGuards(AuthGuard("jwt"))
+@Controller("clients")
+@ApiTags("clients")
 export class ClientsController {
   constructor(private readonly clientsService: ClientsService) {
   }

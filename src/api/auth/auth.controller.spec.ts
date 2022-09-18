@@ -19,7 +19,7 @@ describe("AuthController", () => {
         PassportModule,
         JwtModule.registerAsync({
           useFactory: () => ({
-            secret: GetEnv("SECRET_TOKEN"),
+            secret: "test",
             signOptions: {
               expiresIn: "1d"
             }
